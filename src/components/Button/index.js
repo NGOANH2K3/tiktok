@@ -5,7 +5,7 @@ const cx = classNames.bind(styles);
 function Button({
     to,
     href,
-    onclick,
+    onClick,
     primary = false,
     outline = false,
     text = false,
@@ -21,7 +21,7 @@ function Button({
 }) {
     let Comp = 'button';
     const prop = {
-        onclick,
+        onClick,
         ...passProps,
     };
 
