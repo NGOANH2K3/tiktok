@@ -1,9 +1,6 @@
 .search,
 .box-search {
     width: 361px;
-    --search-border-radius: 92px;
-    --search-top-spacer: 9px;
-    --search-button-width: 52px;
 }
 
 .search-title {
@@ -19,6 +16,7 @@
     display: flex;
     position: relative;
     padding-left: 16px;
+    border: 1.5px solid transparent;
 
     input {
         flex: 1;
@@ -27,6 +25,7 @@
         caret-color: var(--primary);
         height: 100%;
         background-color: transparent;
+        font-family: var(--font);
     }
 
     input:not(:placeholder-shown) ~ .search-btn {
@@ -55,6 +54,18 @@
     transform: translateY(-50%);
     color: rgba(22, 24, 35, 0.34);
     background-color: transparent;
+}
+
+.loading {
+    animation: spinner 1s linear infinite;
+}
+@keyframes spinner {
+    from {
+        transform: translateY(-50%) rotate(0);
+    }
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
 }
 .search-btn {
     display: flex;
