@@ -1,4 +1,4 @@
-import reoutesConfig from '@/config/routes';
+import config from '@/config';
 
 //pages
 import Follwing from '@/pages/Following';
@@ -7,27 +7,27 @@ import Profile from '@/pages/Profile';
 import Upload from '@/pages/Upload';
 import Search from '@/pages/Search';
 //layout
-import { HeaderOnly } from '@/components/Layout';
+import { HeaderOnly } from '@/layouts';
 const publicRoutes = [
     {
-        path: reoutesConfig.home,
+        path: config.routes.home,
         component: Home,
     },
     {
-        path: reoutesConfig.follwing,
+        path: config.routes.follwing,
         component: Follwing,
     },
     {
-        path: reoutesConfig.profile,
+        path: config.routes.profile,
         component: Profile,
     },
     {
-        path: reoutesConfig.upload,
+        path: config.routes.upload,
         component: Upload,
         layout: HeaderOnly,
     },
     {
-        path: reoutesConfig.search,
+        path: config.routes.search,
         component: Search,
         layout: null,
     },

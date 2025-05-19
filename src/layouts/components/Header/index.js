@@ -21,7 +21,7 @@ import 'tippy.js/dist/tippy.css';
 import styles from './Header.module.scss';
 import Search from '../Search';
 import { Link } from 'react-router-dom';
-import reoutesConfig from '@/config/routes';
+import config from '@/config';
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
     {
@@ -92,7 +92,7 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <Link to={reoutesConfig.home} className={cx('logo')}>
+                <Link to={config.routes.home} className={cx('logo')}>
                     <img src={image.logo} alt="logo"></img>
                 </Link>
                 <Search />

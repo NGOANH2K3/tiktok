@@ -2,7 +2,7 @@ import AccoutItem from '@/components/AccountItem';
 import { SearchIcon } from '@/components/Icons';
 import { Wrapper as PopperWrapper } from '@/components/Popper';
 import { useDebounce } from '@/Hook';
-import * as searchServices from '@/apiServices/searchServices';
+import * as searchServices from '@/services/searchServices';
 import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import TippyHeadless from '@tippyjs/react/headless';
