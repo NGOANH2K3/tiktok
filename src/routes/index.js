@@ -8,6 +8,7 @@ import Upload from '@/pages/Upload';
 import Search from '@/pages/Search';
 //layout
 import { HeaderOnly } from '@/layouts';
+import Live from '@/pages/Live';
 const publicRoutes = [
     {
         path: config.routes.home,
@@ -16,6 +17,10 @@ const publicRoutes = [
     {
         path: config.routes.follwing,
         component: Follwing,
+    },
+    {
+        path: config.routes.live,
+        component: Live,
     },
     {
         path: config.routes.profile,
