@@ -1,0 +1,21 @@
+.wrapper {
+    padding-top: 14px;
+    margin: 0 0 30px;
+    border-top: 1px solid #e3e3e4;
+}
+
+.details-page {
+    color: #16182380;
+    font-weight: 600;
+    font-size: 1.2rem;
+
+    span {
+        display: inline-block;
+        margin: 5px 6px 0 0;
+    }
+}
+
+.details-page span:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}

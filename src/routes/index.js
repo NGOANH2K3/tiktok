@@ -9,6 +9,7 @@ import Search from '@/pages/Search';
 //layout
 import { HeaderOnly } from '@/layouts';
 import Live from '@/pages/Live';
+import DetailVideo from '@/pages/DetailVideo';
 const publicRoutes = [
     {
         path: config.routes.home,
@@ -35,6 +36,10 @@ const publicRoutes = [
         path: config.routes.search,
         component: Search,
         layout: null,
+    },
+    {
+        path: config.routes.video,
+        component: DetailVideo,
     },
 ];
 

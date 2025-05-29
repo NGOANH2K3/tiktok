@@ -1,6 +1,6 @@
 import image from '@/assets/images';
 import Button from '@/components/Button';
-import { InboxIcon, MessageIcon, UploadIcon } from '@/components/Icons';
+import { InboxIcon, MessageIcon } from '@/components/Icons';
 import Image from '@/components/Image';
 import Menu from '@/components/Popper/Menu';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
@@ -12,6 +12,7 @@ import {
     faGear,
     faKeyboard,
     faPassport,
+    faPlus,
     faSignIn,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -20,13 +21,14 @@ import classNames from 'classnames/bind';
 import 'tippy.js/dist/tippy.css';
 import styles from './Header.module.scss';
 import Search from '../Search';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import config from '@/config';
+import { UserAuth } from '@/components/Store';
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faPassport} />,
-        title: 'VietNamese',
+        title: 'language',
         children: {
             title: 'Language',
             data: [
@@ -37,8 +39,88 @@ const MENU_ITEMS = [
                 },
                 {
                     type: 'language',
+                    code: 'العربية',
+                    title: 'العربية',
+                },
+                {
+                    type: 'language',
+                    code: 'বাঙ্গালি (ভারত)',
+                    title: 'বাঙ্গালি (ভারত)',
+                },
+                {
+                    type: 'language',
+                    code: 'Cebuano (Pilipinas)',
+                    title: 'Cebuano (Pilipinas)',
+                },
+                {
+                    type: 'language',
+                    code: 'Čeština (Česká republika)',
+                    title: 'Čeština (Česká republika)',
+                },
+                {
+                    type: 'language',
+                    code: 'Deutsch',
+                    title: 'Deutsch',
+                },
+                {
+                    type: 'language',
+                    code: 'Ελληνικά (Ελλάδα)',
+                    title: 'Ελληνικά (Ελλάδα)',
+                },
+                {
+                    type: 'language',
+                    code: 'Español',
+                    title: 'Español',
+                },
+                {
+                    type: 'language',
+                    code: 'Suomi (Suomi)',
+                    title: 'Suomi (Suomi)',
+                },
+                {
+                    type: 'language',
+                    code: 'Filipino (Pilipinas)',
+                    title: 'Filipino (Pilipinas)',
+                },
+                {
+                    type: 'language',
+                    code: 'Français',
+                    title: 'Français',
+                },
+                {
+                    type: 'language',
+                    code: 'עברית (ישראל)',
+                    title: 'עברית (ישראל)',
+                },
+                {
+                    type: 'language',
+                    code: 'हिंदी',
+                    title: 'हिंदी',
+                },
+                {
+                    type: 'language',
+                    code: 'Magyar (Magyarország)',
+                    title: 'Magyar (Magyarország)',
+                },
+                {
+                    type: 'language',
+                    code: '简体中文',
+                    title: '简体中文',
+                },
+                {
+                    type: 'language',
+                    code: 'Italiano (Italia)',
+                    title: 'Italiano (Italia)',
+                },
+                {
+                    type: 'language',
+                    code: '日本語（日本）',
+                    title: '日本語（日本）',
+                },
+                {
+                    type: 'language',
                     code: 'vi',
-                    title: 'VietNamese',
+                    title: 'Tiếng Việt',
                 },
             ],
         },
@@ -54,22 +136,19 @@ const MENU_ITEMS = [
     },
 ];
 function Header() {
+    const navigate = useNavigate();
+
+    const { userAuth, tokenStr, setOpenFormLogin } = UserAuth();
     //handle logig
-    const handleMenuChange = (menuItem) => {
-        switch (menuItem.type) {
-            case 'Language':
-                // Handle change language
-                break;
-            default:
-        }
+    const handleFormLogin = () => {
+        tokenStr && userAuth ? navigate('/upload') : setOpenFormLogin(true);
     };
 
-    const currentUser = true;
     const userMenu = [
         {
             icon: <FontAwesomeIcon icon={faUser} />,
             title: 'View Profile',
-            to: '/@GIANG',
+            to: `/@${userAuth.nickname}`,
         },
         {
             icon: <FontAwesomeIcon icon={faCoins} />,
@@ -97,13 +176,16 @@ function Header() {
                 </Link>
                 <Search />
                 <div className={cx('actions')}>
-                    {currentUser ? (
+                    <Button
+                        onClick={handleFormLogin}
+                        leftIcon={<FontAwesomeIcon icon={faPlus} />}
+                        className={cx('btn-upload')}
+                        outline
+                    >
+                        Upload
+                    </Button>
+                    {userAuth && tokenStr ? (
                         <>
-                            <Tippy delay={[0, 50]} content="Up Load" placement="bottom">
-                                <button className={cx('action-btn')}>
-                                    <UploadIcon />
-                                </button>
-                            </Tippy>
                             <Tippy delay={[0, 50]} content="Message" placement="bottom">
                                 <button className={cx('action-btn')}>
                                     <MessageIcon />
@@ -118,19 +200,20 @@ function Header() {
                         </>
                     ) : (
                         <>
-                            <Button text>Upload</Button>
-                            <Button primary leftIcon={<FontAwesomeIcon icon={faSignIn} />}>
+                            <Button onClick={handleFormLogin} primary leftIcon={<FontAwesomeIcon icon={faSignIn} />}>
                                 Login
                             </Button>
                         </>
                     )}
-                    <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
-                        {currentUser ? (
-                            <Image
-                                className={cx('user-avatar')}
-                                src="https://p9-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/350931b18e192228b120f705740afb0b~tplv-tiktokx-cropcenter:100:100.jpeg?dr=14579&refresh_token=72d2549a&x-expires=1747368000&x-signature=rKXYuKTyNpI6L4UFYdT9oxh56V8%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=my"
-                                alt="Name User"
-                            />
+                    <Menu items={userAuth && tokenStr ? userMenu : MENU_ITEMS}>
+                        {userAuth && tokenStr ? (
+                            <Link to={`/@${userAuth.nickname}`} className={cx('avatar-user')}>
+                                <Image
+                                    className={cx('avatar')}
+                                    src={userAuth.avatar}
+                                    alt={userAuth.first_name + ' ' + userAuth.last_name}
+                                />
+                            </Link>
                         ) : (
                             <button className={cx('more-btn')}>
                                 <FontAwesomeIcon icon={faEllipsisVertical} />

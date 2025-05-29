@@ -3,29 +3,62 @@ import styles from './SuggestedAccounts.module.scss';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-
+import Tippy from '@tippyjs/react/headless';
+import { Wrapper as PopperWrapper } from '@/components/Popper';
+import AccountPreview from './AccountPreview';
+import { Link } from 'react-router-dom';
+import { Fragment } from 'react';
+import LoadingElement from '../LoadingElement';
+import Image from '@/components/Image';
 const cx = classNames.bind(styles);
-function AccountItems() {
-    return (
-        <div className={cx('listItem')}>
-            <img
-                className={cx('avatar')}
-                src="https://p16-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/9a56c18766773dc87ad5a4a98d771108~tplv-tiktokx-cropcenter:100:100.jpeg?dr=14579&refresh_token=c95bd71d&x-expires=1747969200&x-signature=lV2u7niqOIQB0auUG%2FiGQYcJZfM%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=my"
-                alt="avatar"
-            />
-            <div className={cx('item-info')}>
-                <p className={cx('nickname')}>
-                    <strong>HuuGiang</strong>
-                    <FontAwesomeIcon className={cx('icon')} icon={faCheckCircle} />
-                </p>
-                <p className={cx('name')}>Nguyễn Hữu Giang</p>
+function AccountItems({ value = {}, isLoading = false, isPreview = false }) {
+    const renderPreview = (prop) => {
+        return (
+            <div tabIndex="-1" {...prop}>
+                {isPreview && (
+                    <PopperWrapper>
+                        <AccountPreview data={value} />
+                    </PopperWrapper>
+                )}
             </div>
+        );
+    };
+    return (
+        <div>
+            <Tippy interactive delay={[800, 0]} offset={[-20, 0]} placement="bottom" render={renderPreview}>
+                <Link to={`/@${value.nickname}`} className={cx('listItem')}>
+                    {!isLoading ? (
+                        <Fragment>
+                            <Image className={cx('avatar')} src={value.avatar} alt={value.nickname} />
+                            <div className={cx('item-info')}>
+                                <p className={cx('nickname')}>
+                                    <strong>{value.nickname}</strong>
+                                    <span className={cx('icon')}>
+                                        {value.tick && <FontAwesomeIcon icon={faCheckCircle} />}
+                                    </span>
+                                </p>
+                                <p className={cx('name')}>{`${value.first_name} ${value.last_name}`}</p>
+                            </div>
+                        </Fragment>
+                    ) : (
+                        <div className={cx('loading-container')}>
+                            <LoadingElement className={cx('loading-avatar')} />
+                            <div className={cx('loading-info')}>
+                                <LoadingElement className={cx('loading-nickname')} />
+                                <LoadingElement className={cx('loading-username')} />
+                            </div>
+                        </div>
+                    )}
+                </Link>
+            </Tippy>
         </div>
     );
 }
 
 AccountItems.propTypes = {
     item: PropTypes.string.isRequired,
+    isLoading: PropTypes.bool,
+    isPreview: PropTypes.bool,
 };
 
 export default AccountItems;

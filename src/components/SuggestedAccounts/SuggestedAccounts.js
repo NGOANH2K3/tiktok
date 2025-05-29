@@ -1,23 +1,42 @@
+import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './SuggestedAccounts.module.scss';
-import PropTypes from 'prop-types';
-import AccountItems from './AccountItems';
+import AccountItem from './AccountItems';
 
 const cx = classNames.bind(styles);
-function SuggestedAccounts({ lable }) {
+
+function SuggestedAccounts({ headingTitle = '', footerTitle = '', data = [], onClick = () => {}, isPreview = false }) {
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        setIsLoading(true);
+
+        setTimeout(() => {
+            setIsLoading(false);
+        }, [1000]);
+    }, []);
+
     return (
         <div className={cx('wrapper')}>
-            <h2 className={cx('lable')}>{lable}</h2>
-            <AccountItems />
-            <AccountItems />
-            <AccountItems />
-            <p className={cx('more')}>See all</p>
+            <p className={cx('title')}>{headingTitle}</p>
+
+            {data.map((account) => (
+                <AccountItem key={account.id} value={account} isLoading={isLoading} isPreview={isPreview} />
+            ))}
+
+            <p onClick={onClick} className={cx('more-btn')}>
+                {footerTitle}
+            </p>
         </div>
     );
 }
 
 SuggestedAccounts.propTypes = {
-    lable: PropTypes.string.isRequired,
+    headingTitle: PropTypes.string.isRequired,
+    footerTitle: PropTypes.string.isRequired,
+    data: PropTypes.array,
+    isPreview: PropTypes.bool,
 };
 
 export default SuggestedAccounts;
