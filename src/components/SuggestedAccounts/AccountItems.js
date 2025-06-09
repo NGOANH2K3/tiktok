@@ -24,7 +24,7 @@ function AccountItems({ value = {}, isLoading = false, isPreview = false }) {
         );
     };
     return (
-        <div>
+        <div className={cx('accountItem')}>
             <Tippy interactive delay={[800, 0]} offset={[-20, 0]} placement="bottom" render={renderPreview}>
                 <Link to={`/@${value.nickname}`} className={cx('listItem')}>
                     {!isLoading ? (
@@ -56,7 +56,6 @@ function AccountItems({ value = {}, isLoading = false, isPreview = false }) {
 }
 
 AccountItems.propTypes = {
-    item: PropTypes.string.isRequired,
     isLoading: PropTypes.bool,
     isPreview: PropTypes.bool,
 };

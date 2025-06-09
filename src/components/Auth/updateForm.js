@@ -43,6 +43,12 @@ function FormUpdate() {
             alert('Please enter a valid website URL (e.g. https://example.com)');
             return;
         }
+
+        if (!tokenStr || !userAuth) {
+            alert('Missing authentication token or user data');
+            return;
+        }
+
         const payload = {
             first_name: firstName,
             last_name: lastName,
@@ -135,14 +141,13 @@ function FormUpdate() {
                     </div>
 
                     <footer className={cx('footer-update')}>
-                        <Button onClick={() => setOpenFormEdit(false)} outline medium>
+                        <Button onClick={() => setOpenFormEdit(false)} outline>
                             Cancel
                         </Button>
                         <Button
                             onClick={handleSave}
                             disabled={noChange}
                             outline
-                            medium
                             className={cx('btn-form-update', { 'btn-form-save': true })}
                         >
                             Save

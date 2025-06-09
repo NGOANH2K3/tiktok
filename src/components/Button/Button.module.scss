@@ -4,7 +4,7 @@
     justify-content: center;
     font-size: 1.6rem;
     font-weight: 700;
-    min-width: 100px;
+    // min-width: 100px;
     padding: 9px 16px;
     border-radius: 4px;
     font-family: var(--font);
@@ -17,15 +17,22 @@
         margin-left: 8px;
     }
 
-    &.disable {
+    &.disabled {
         pointer-events: none;
-        opacity: 0.5;
+        background-color: rgba(22, 24, 35, 0.06);
+        margin-left: 0px;
     }
 }
 
 .icon + .title,
 .title + .icon {
     margin-left: 8px;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .icon {

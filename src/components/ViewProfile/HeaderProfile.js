@@ -60,7 +60,7 @@ function HeaderProfile({ data = {} }) {
                     <h1 className={cx('nickname')}>{data.nickname}</h1>
                     <h4 className={cx('username')}>{data.first_name + ' ' + data.last_name}</h4>
                     {(userAuth && tokenStr && userAuth.id === data.id && (
-                        <Button onClick={handleOpenFormUpdate} className={cx('btn-update')} outline medium>
+                        <Button onClick={handleOpenFormUpdate} className={cx('btn-update')} outline>
                             <UpdateIcon className={cx('update-icon')} />
                             Update profile
                         </Button>
@@ -72,7 +72,6 @@ function HeaderProfile({ data = {} }) {
                                     'btn-follow': true,
                                 })}
                                 primary
-                                medium
                             >
                                 Follow
                             </Button>
@@ -84,7 +83,6 @@ function HeaderProfile({ data = {} }) {
                                         'btn-message': true,
                                     })}
                                     outline
-                                    medium
                                 >
                                     Message
                                 </Button>

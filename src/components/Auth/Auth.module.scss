@@ -307,6 +307,10 @@
 .container-btn {
     display: flex;
     flex-direction: column;
+
+    .btn-form-delete {
+        margin-left: 0px;
+    }
 }
 
 .btn-form-delete {

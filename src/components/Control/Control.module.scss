@@ -22,10 +22,20 @@
     opacity: 0;
     visibility: hidden;
     position: absolute;
-    bottom: 18px;
+    bottom: -65px;
     left: 50%;
     transform: translateX(-50%);
-    margin-bottom: 27px;
+    margin-top: 27px;
+    transition-duration: 200ms;
+}
+
+.slider-fullscreen {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    bottom: 43px;
+    left: 50%;
+    transform: translateX(-50%);
     transition-duration: 200ms;
 }
 

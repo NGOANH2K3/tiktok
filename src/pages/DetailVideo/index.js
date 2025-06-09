@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 
 import PageVideo from '../../layouts/PageVideo';
-import config from '../../services';
+
 import { UserAuth } from '@/components/Store';
 import { useLocation, useParams } from 'react-router-dom';
+import configs from '../../services';
 
 function DetailVideo() {
     const location = useLocation();
@@ -13,7 +14,7 @@ function DetailVideo() {
     const { tokenStr } = UserAuth();
 
     const handleGetInfoVideo = async () => {
-        const data = await config.getAVideo(idVideo || location.pathname.split('/')[2], tokenStr);
+        const data = await configs.getAVideo(idVideo || location.pathname.split('/')[2], tokenStr);
 
         setDetailsVideo(data);
     };
@@ -28,7 +29,7 @@ function DetailVideo() {
     }
 
     return (
-        <div style={{ width: '100%', minHeight: '100vh' }}>
+        <div style={{ marginLeft: '300px', width: '100%', minHeight: '100vh' }}>
             <PageVideo data={detailsVideo} idVideo={idVideo} />
         </div>
     );

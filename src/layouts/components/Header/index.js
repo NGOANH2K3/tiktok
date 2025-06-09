@@ -164,8 +164,8 @@ function Header() {
         {
             icon: <FontAwesomeIcon icon={faArrowRightFromBracket} />,
             title: 'Log uot',
-            to: '/login',
             separate: true,
+            component: true,
         },
     ];
     return (

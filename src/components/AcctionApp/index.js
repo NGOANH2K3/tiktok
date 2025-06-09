@@ -53,7 +53,6 @@ function ActionsApp() {
                     className={cx('btn-getApp', {
                         'close-animate': !isExpand,
                     })}
-                    medium
                 >
                     Get App
                 </Button>
@@ -79,7 +78,7 @@ function ActionsApp() {
                 </div>
             </div>
             <div className={cx('div-btn')}>
-                <Button onClick={handleOnScroll} className={cx('btn-scrolling')}>
+                <Button primary onClick={handleOnScroll} className={cx('btn-scrolling')}>
                     <ScrollOnTop />
                 </Button>
             </div>

@@ -23,17 +23,28 @@ function ViewProfile() {
 
     useEffect(() => {
         const fetchApi = async () => {
-            const data = await configs.user(nickname, tokenStr);
+            try {
+                const data = await configs.user(nickname, tokenStr);
 
-            setProfileUser(data);
-            setListVideos(data.videos);
+                if (data && typeof data === 'object') {
+                    setProfileUser(data);
+                    setListVideos(data.videos ?? []); // fallback nếu 'videos' không tồn tại
+                } else {
+                    setProfileUser({});
+                    setListVideos([]);
+                }
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+                setProfileUser({});
+                setListVideos([]);
+            }
         };
 
         fetchApi();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [nickname]);
+    }, [nickname, tokenStr]);
 
-    if (Object.keys(profileUser).length === 0) {
+    if (!profileUser || Object.keys(profileUser).length === 0) {
         return;
     }
 

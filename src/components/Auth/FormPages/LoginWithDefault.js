@@ -6,8 +6,9 @@ import styles from './FormPages.module.scss';
 
 import { UserNotify } from '../../Store';
 import Button from '../../Button';
-import config from '../../../services';
+
 import { HidePassIcon, ShowPassIcon } from '@/components/Icons';
+import configs from '@/services';
 
 const cx = classNames.bind(styles);
 
@@ -44,7 +45,7 @@ function LoginWithDefault() {
         e.preventDefault();
         setIsLoading(true);
 
-        const data = await config.login(valueAccount, valuePassword);
+        const data = await configs.login(valueAccount, valuePassword);
 
         if (data.errCode) {
             setInfoNotify({

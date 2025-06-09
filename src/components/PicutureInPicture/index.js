@@ -332,6 +332,7 @@ function PicutureInPicture({ data = {} }) {
                                     widthY="4px"
                                     heightY="80px"
                                     isMute={mutedVideo ? true : false}
+                                    mode="fullscreen"
                                 />
                                 <div>
                                     <Tippy content="Full screen">

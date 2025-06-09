@@ -10,7 +10,7 @@ function Button({
     primary = false,
     outline = false,
     text = false,
-    disable = false,
+    disabled = false,
     small = false,
     large = false,
     rounded = false,
@@ -27,7 +27,7 @@ function Button({
     };
 
     // remote event clink
-    if (disable) {
+    if (disabled) {
         Object.keys(prop).forEach((key) => {
             if (key.startsWith('on') && typeof [key] === 'function') {
                 delete prop[key];
@@ -48,7 +48,7 @@ function Button({
         small,
         large,
         text,
-        disable,
+        disabled,
         rounded,
         [className]: className,
     });
@@ -68,7 +68,7 @@ Button.prototype = {
     primary: PropTypes.bool,
     outline: PropTypes.bool,
     text: PropTypes.bool,
-    disable: PropTypes.bool,
+    disabled: PropTypes.bool,
     rounded: PropTypes.bool,
     small: PropTypes.bool,
     large: PropTypes.bool,

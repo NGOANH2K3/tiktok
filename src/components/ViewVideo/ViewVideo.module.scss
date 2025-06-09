@@ -1,0 +1,106 @@
+.wrapper-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.conten {
+    display: flex;
+    max-height: 740px;
+    gap: 20px;
+    position: relative;
+    padding: 20px 0;
+}
+
+.video-items {
+    display: flex;
+    max-width: 400px;
+    min-height: 700px;
+    border: 1px solid;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    background-color: #333;
+}
+
+// action
+.action {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.action-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .btn-action {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        margin-top: 8px;
+        margin-bottom: 6px;
+        border-radius: 50%;
+        background-color: #1618230f;
+    }
+    .btn-avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        margin-top: 8px;
+        margin-bottom: 30px;
+        border-radius: 50%;
+        background-color: #1618230f;
+    }
+
+    .btn-follow {
+        position: absolute;
+        bottom: 19px;
+        border-radius: 50%;
+        margin-left: 0px;
+        background-color: transparent;
+        border-radius: 50%;
+        background-color: var(--primary);
+        padding: 0px;
+    }
+}
+
+.footer-video {
+    width: 100%;
+    position: absolute;
+    bottom: 40px;
+    right: 0px;
+    left: 0;
+    padding: 0px 12px;
+
+    .infor {
+        color: #fff;
+    }
+
+    .check {
+        margin-left: 6px;
+        color: rgba(55, 233, 233, 0.866);
+        font-size: 12px;
+    }
+
+    .nickname {
+        color: var(--white);
+        font-size: 1.5rem;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .text-content,
+    .name-music {
+        font-size: 1.3rem;
+    }
+}
