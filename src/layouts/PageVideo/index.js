@@ -4,15 +4,14 @@ import PropTypes from 'prop-types';
 import 'tippy.js/dist/tippy.css';
 import classNames from 'classnames/bind';
 import styles from './PageVideo.module.scss';
-
 import { MusicIcon } from '@/components/Icons';
 import { UserAuth } from '../../components/Store';
 import ListComments from '../../components/ListComments';
 import Image from '../../components/Image';
 import Button from '../../components/Button';
 import VideoPlayer from './VideoPlayer';
-import config from '../../services';
 import TextBox from '../../components/TextBox';
+import configs from '../../services';
 
 const cx = classNames.bind(styles);
 
@@ -36,7 +35,7 @@ function PageVideo({ data = {}, idVideo }) {
             return;
         }
 
-        const data = await config.comment(idVideo || location.pathname.split('/')[2], tokenStr);
+        const data = await configs.comments(idVideo || location.pathname.split('/')[2], tokenStr);
 
         setDataComments(data);
     };
@@ -46,7 +45,7 @@ function PageVideo({ data = {}, idVideo }) {
             return;
         }
 
-        await config.postComments(idVideo || location.pathname.split('/')[2], valueText, tokenStr);
+        await configs.postComments(idVideo || location.pathname.split('/')[2], valueText, tokenStr);
         handleGetComments();
 
         setValueText('');
@@ -98,7 +97,7 @@ function PageVideo({ data = {}, idVideo }) {
                                         </p>
                                     </div>
                                 </div>
-                                <Button className={cx('followbtn-user')} primary medium>
+                                <Button className={cx('followbtn-user')} primary>
                                     Follow
                                 </Button>
                             </div>

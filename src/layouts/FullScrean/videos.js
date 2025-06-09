@@ -260,6 +260,7 @@ function Videos({ onPrevPage = () => {}, onNextPage = () => {}, data = {}, index
                     backgroundWrapper="rgba(84, 84, 84, 0.5)"
                     isMute={mutedVideo ? true : false}
                     className={cx('btn-direction')}
+                    mode="fullscreen"
                 />
             </div>
         </div>

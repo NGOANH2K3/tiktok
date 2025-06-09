@@ -25,6 +25,7 @@ function VolumeVideo({
     backgroundWrapper = 'rgb(27, 27, 27)',
     borderRadius = '4px',
     isMute = false,
+    mode = 'home',
 }) {
     const MIN_VALUE = 0;
     const MAX_VALUE = 100;
@@ -43,7 +44,13 @@ function VolumeVideo({
                     <VolumeIcon width={widthIcon} height={heightIcon} />
                 )}
             </div>
-            <div style={{ bottom: y, left: x }} className={cx('slider-container')}>
+            <div
+                style={{ bottom: y, left: x }}
+                className={cx('slider-container', {
+                    'slider-home': mode === 'home',
+                    'slider-fullscreen': mode === 'fullscreen',
+                })}
+            >
                 <InputSlider
                     className={cx('volume-slider')}
                     onChange={onChangeVolume}

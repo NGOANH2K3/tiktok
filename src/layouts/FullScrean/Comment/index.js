@@ -19,16 +19,16 @@ import {
     FavouriteIcon,
     LoveIcon,
     MusicIcon,
-    LovedIcon,
     EllipsesHozironIcon,
+    Like,
 } from '@/components/Icons';
 import { UserAuth, UserNotify, UserVideo } from '../../../components/Store';
 import { Wrapper } from '../../../components/Popper';
-import config from '../../../services';
 import Button from '../../../components/Button';
 import Image from '../../../components/Image';
 import ListComments from '../../../components/ListComments';
 import TextBox from '../../../components/TextBox';
+import configs from '../../../services';
 
 const cx = classNames.bind(styles);
 
@@ -91,7 +91,7 @@ function Comment({ urlPath = '', data = {}, idVideo, statePosition = [], listVid
             return;
         }
 
-        const data = await config.comment(idVideo, tokenStr);
+        const data = await configs.comments(idVideo, tokenStr);
 
         setGetDataComments(data);
     };
@@ -126,13 +126,13 @@ function Comment({ urlPath = '', data = {}, idVideo, statePosition = [], listVid
         const idVideo = data?.id;
 
         if (!likeVideo) {
-            const res = await config.likeVideo(idVideo, tokenStr);
+            const res = await configs.LikeVideoService(idVideo, tokenStr);
 
             setLikeVideo(res?.data?.is_liked);
 
             setLikesCount(res?.data?.likes_count);
         } else {
-            const res = await config.unLikeVideo(idVideo, tokenStr);
+            const res = await configs.UnLikeVideoService(idVideo, tokenStr);
 
             setLikeVideo(res?.data?.is_liked);
 
@@ -184,7 +184,7 @@ function Comment({ urlPath = '', data = {}, idVideo, statePosition = [], listVid
             return;
         }
 
-        const data = await config.postComments(idVideo, valueComments, tokenStr);
+        const data = await configs.postComments(idVideo, valueComments, tokenStr);
 
         if (data.Error) {
             setInfoNotify({
@@ -291,7 +291,6 @@ function Comment({ urlPath = '', data = {}, idVideo, statePosition = [], listVid
                                     'btn-unfollow': isFollow,
                                 })}
                                 primary
-                                medium
                             >
                                 {isFollow ? 'Following' : 'Follow'}
                             </Button>
@@ -314,7 +313,7 @@ function Comment({ urlPath = '', data = {}, idVideo, statePosition = [], listVid
                                     className={cx('btn-action')}
                                 >
                                     {likeVideo ? (
-                                        <LovedIcon width="2rem" height="2rem" />
+                                        <Like width="2rem" height="2rem" />
                                     ) : (
                                         <LoveIcon width="2rem" height="2rem" />
                                     )}

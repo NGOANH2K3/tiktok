@@ -78,7 +78,7 @@ const DATA_EMOJIES = [
     },
     {
         type: 'emoji',
-        icon: '😶‍🌫️',
+        icon: '🤯',
     },
     {
         type: 'emoji',
@@ -274,7 +274,6 @@ const TextBox = forwardRef(
 
         const handleSelectEmoji = (icon) => {
             ref.current.focus();
-
             setTextValue((prev) => `${prev + icon}`);
             setIsTableEmoji(false);
             setIsActiveTab(false);

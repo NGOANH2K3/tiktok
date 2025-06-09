@@ -1,5 +1,5 @@
-import { Fragment, useState } from 'react';
 import classNames from 'classnames/bind';
+import { Fragment, useState } from 'react';
 import styles from './FormPages.module.scss';
 
 import LoginWithDefault from './LoginWithDefault';
@@ -14,6 +14,7 @@ import {
     TalkIcon,
     TwitterIcon,
 } from '@/components/Icons';
+import Button from '@/components/Button';
 
 const cx = classNames.bind(styles);
 
@@ -62,6 +63,16 @@ const MENU_SIGNUP = {
 const MENU_LOGIN = {
     titleHeader: 'Log in to TikTok',
     data: [
+        // {
+        //     icon: <QrIcon />,
+        //     title: 'Use QR code',
+        //     disabled: true,
+        //     children: {
+        //         title: 'Log in',
+        //         type: 'components',
+        //         data: <LoginWithQr />,
+        //     },
+        // },
         {
             icon: <PerSonIcon />,
             title: 'Phone number / Email / TikTok ID',
@@ -120,7 +131,7 @@ function FormPages() {
                         <h1 className={cx('title')}>{items.titleHeader}</h1>
                         <div className={cx('main-form')}>
                             {items.data.map((value) => (
-                                <button
+                                <Button
                                     onClick={() => handleNextForm(value)}
                                     className={cx('channel-item')}
                                     key={value.title}
@@ -128,7 +139,7 @@ function FormPages() {
                                 >
                                     <span className={cx('icon')}>{value.icon}</span>
                                     <p className={cx('text')}>{value.title}</p>
-                                </button>
+                                </Button>
                             ))}
                         </div>
                     </div>
