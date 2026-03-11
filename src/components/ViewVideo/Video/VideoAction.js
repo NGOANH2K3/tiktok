@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import configs from '@/services';
 import ButtonFollow from '@/components/Button/buttonFollowing';
 import Image from '@/components/Image';
+import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function VideoActions({
@@ -110,7 +111,16 @@ function VideoActions({
         <div className={cx('container-actions')}>
             <div className={cx('action-item')}>
                 <Button className={cx('btn-avatar')}>
-                    <Image className={cx('avatar')} src={data?.user?.avatar} alt={data?.user?.last_name} />
+                    <Link
+                        to={`/@${data?.user?.nickname}`}
+                        onClick={() => {
+                            setOpenFullVideo(false);
+                            window.history.replaceState(null, '', `/@${data?.user?.nickname}`);
+                        }}
+                        className={cx('avatar-user')}
+                    >
+                        <Image className={cx('avatar')} src={data?.user?.avatar} alt={data?.user?.nickname} />
+                    </Link>
                 </Button>
                 <ButtonFollow
                     className={cx(isFollow ? 'btn-unfollow' : 'btn-follow')}

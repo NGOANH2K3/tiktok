@@ -4,6 +4,7 @@ import login from './authLogin';
 import logout from './authLogout';
 import comments from './comments';
 import Base64Convert from './convertBase64ToBlob';
+import { deleteComment, deleteVideo } from './delete';
 import { followUser, unFollowUser } from './follow';
 import user from './getUser';
 import getAVideo from './getVideo';
@@ -32,6 +33,8 @@ const configs = {
     comments,
     postComments,
     updateComments,
+    deleteComment,
+    deleteVideo,
 };
 
 export default configs;

@@ -19,6 +19,7 @@ import config from '../../services';
 import Image from '../Image';
 import LoadingElement from '../LoadingElement';
 import TextBox from '../TextBox';
+import configs from '../../services';
 
 const cx = classNames.bind(styles);
 
@@ -78,7 +79,7 @@ function ListComments({
         setDataForm({
             title: 'Bạn có chắc chắn muốn xóa bình luận này?',
             handle: async () => {
-                await config.deleteComment(contentComment, idComment, tokenStr);
+                await configs.deleteComment(contentComment, idComment, tokenStr);
 
                 setInfoNotify({
                     content: 'Deleted your comment!',

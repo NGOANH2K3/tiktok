@@ -15,10 +15,12 @@ function ActionsApp() {
 
     useEffect(() => {
         const handleScrollY = () => {
-            if (window.scrollY >= 20) {
-                actionsRef.current.style.transform = 'translateY(0)';
-            } else {
-                actionsRef.current.style.transform = 'translateY(40px)';
+            if (actionsRef.current) {
+                if (window.scrollY >= 20) {
+                    actionsRef.current.style.transform = 'translateY(0)';
+                } else {
+                    actionsRef.current.style.transform = 'translateY(40px)';
+                }
             }
         };
 
